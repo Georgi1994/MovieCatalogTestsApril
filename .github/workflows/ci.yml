@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v4
+
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore packages
+        run: dotnet restore MovieCatalogApiTests.sln
+
+      - name: Build solution
+        run: dotnet build MovieCatalogApiTests.sln --no-restore
+
+      - name: Run all tests
+        run: dotnet test MovieCatalogApiTests.sln --no-build --verbosity normal
