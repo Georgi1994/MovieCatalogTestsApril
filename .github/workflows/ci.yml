@@ -18,10 +18,10 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore packages
-        run: dotnet restore MovieCatalogApiTests.sln
+        run: dotnet restore
 
       - name: Build solution
-        run: dotnet build MovieCatalogApiTests.sln --no-restore
+        run: dotnet build 
 
       - name: Run all tests
-        run: dotnet test MovieCatalogApiTests.sln --no-build --verbosity normal
+        run: dotnet test 
